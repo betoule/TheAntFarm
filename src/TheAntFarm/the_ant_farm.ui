@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="app_resources.qrc">
-    <normaloff>:/resources/resources/logo/the_ant_farm_logo.svg</normaloff>:/resources/resources/logo/the_ant_logo.png</iconset>
+    <normaloff>:/resources/resources/logo/the_ant_farm_logo.svg</normaloff>:/resources/resources/logo/the_ant_farm_logo.svg</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedKingdom"/>
@@ -52,7 +52,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1944,7 +1944,7 @@
              </sizepolicy>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="gcode_load">
              <property name="sizePolicy">
@@ -5541,11 +5541,22 @@
          <widget class="QOpenGLWidget" name="openGLWidget_2"/>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="register_pos_pb">
+            <property name="text">
+             <string>Register position</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QSlider" name="verticalSlider">
@@ -5762,6 +5773,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -5825,6 +5838,8 @@
                 <property name="font">
                  <font>
                   <pointsize>12</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -7197,6 +7212,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -7234,6 +7251,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -7272,6 +7291,8 @@
               <property name="font">
                <font>
                 <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
                </font>
               </property>
               <property name="text">
@@ -7419,7 +7440,7 @@
      <x>0</x>
      <y>0</y>
      <width>1160</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -7555,7 +7576,7 @@
   </action>
   <action name="actionICON">
    <property name="icon">
-    <iconset resource="app_resources.qrc">
+    <iconset>
      <normaloff>:/resources/resources/logo/the_ant_logo.png</normaloff>:/resources/resources/logo/the_ant_logo.png</iconset>
    </property>
    <property name="text">

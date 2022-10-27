@@ -9,9 +9,9 @@ class DoubleSideManager:
 
         self.detected_holes = []
         # grab webcam
-        self.cap = cv2.VideoCapture(4, cv2.CAP_DSHOW)
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        self.cap = cv2.VideoCapture('/dev/video3')#, cv2.CAP_DSHOW)
+        #self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        #self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     @staticmethod
     def rotate_image(image, angle):
@@ -54,6 +54,7 @@ class DoubleSideManager:
             cnts, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
             # loop over the contours
+            results = []
             for c in cnts:
                 # compute the center of the contour
                 M = cv2.moments(c)
@@ -65,7 +66,7 @@ class DoubleSideManager:
                     # draw the contour and center of the shape on the image
                     cv2.drawContours(frame, [c], -1, (255, 255, 255), 1)
                     cv2.circle(frame, (cX, cY), 3, (255, 0, 0), -1)
-
+                results.append([cx, cy, radius])
         # Green color in BGR
         color = (0, 0, 255)
 
@@ -82,4 +83,4 @@ class DoubleSideManager:
         end_point = (width, hhalf)
         frame = cv2.line(frame, start_point, end_point, color, thickness)
 
-        return frame
+        return frame, results

@@ -124,6 +124,8 @@ class ControllerWorker(QObject):
         [loaded_layer, exc_flag] = self.view_controller.load_new_layer(layer, layer_path)
         if loaded_layer is not None:
             self.update_layer_s.emit(loaded_layer, layer, layer_path, exc_flag)
+            if 'drill' in self.view_controller.pcb.excellons:
+                self.align_controller.update_drills(self.view_controller.pcb.get_excellon('drill'))
         else:
             logger.warning("Invalid file data. No geometries found in file: " + str(layer_path))
             self.update_layer_s.emit(None, layer, "", False)

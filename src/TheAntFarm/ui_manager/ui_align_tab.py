@@ -22,7 +22,8 @@ class UiAlignTab(QObject):
         self.update_threshold_s.connect(self.controlWo.update_threshold_value)
 
         self.controlWo.update_camera_image_s.connect(self.update_camera_image)
-
+        self.ui.register_pos_pb.clicked.connect(self.controlWo.align_controller.register_position)
+        
     @Slot(QPixmap)
     def update_camera_image(self, pixmap):
         self.ui.label_2.setPixmap(pixmap)

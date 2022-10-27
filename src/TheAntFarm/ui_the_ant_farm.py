@@ -2525,10 +2525,20 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.openGLWidget_2)
 
+        self.verticalLayout_16 = QVBoxLayout()
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.label_2 = QLabel(self.align_tab)
         self.label_2.setObjectName(u"label_2")
 
-        self.horizontalLayout_7.addWidget(self.label_2)
+        self.verticalLayout_16.addWidget(self.label_2)
+
+        self.register_pos_pb = QPushButton(self.align_tab)
+        self.register_pos_pb.setObjectName(u"register_pos_pb")
+
+        self.verticalLayout_16.addWidget(self.register_pos_pb)
+
+
+        self.horizontalLayout_7.addLayout(self.verticalLayout_16)
 
         self.verticalSlider = QSlider(self.align_tab)
         self.verticalSlider.setObjectName(u"verticalSlider")
@@ -2645,6 +2655,8 @@ class Ui_MainWindow(object):
         self.layer_colors_section_la.setMaximumSize(QSize(300, 20))
         font3 = QFont()
         font3.setPointSize(12)
+        font3.setBold(True)
+        font3.setWeight(75)
         self.layer_colors_section_la.setFont(font3)
         self.layer_colors_section_la.setAlignment(Qt.AlignCenter)
 
@@ -3317,7 +3329,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.central_widget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1160, 21))
+        self.menubar.setGeometry(QRect(0, 0, 1160, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuFile.setFont(font)
@@ -3432,10 +3444,10 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_tab_widget.setCurrentIndex(0)
+        self.main_tab_widget.setCurrentIndex(2)
         self.prepare_widget.setCurrentIndex(0)
         self.jobs_sw.setCurrentIndex(0)
-        self.ctrl_tab_widget.setCurrentIndex(0)
+        self.ctrl_tab_widget.setCurrentIndex(1)
         self.z_step_cb.setCurrentIndex(3)
         self.xy_step_cb.setCurrentIndex(3)
         self.settings_sub_tab.setCurrentIndex(0)
@@ -3723,6 +3735,7 @@ class Ui_MainWindow(object):
         self.tool_change_tb.setText(QCoreApplication.translate("MainWindow", u"TOOL CHANGE", None))
         self.main_tab_widget.setTabText(self.main_tab_widget.indexOf(self.control_tab), QCoreApplication.translate("MainWindow", u"CONTROL", None))
         self.label_2.setText("")
+        self.register_pos_pb.setText(QCoreApplication.translate("MainWindow", u"Register position", None))
         self.main_tab_widget.setTabText(self.main_tab_widget.indexOf(self.align_tab), QCoreApplication.translate("MainWindow", u"ALIGN", None))
         self.top_layer_color_pb.setText(QCoreApplication.translate("MainWindow", u"TOP LAYER COLOR", None))
         self.bottom_layer_color_pb.setText(QCoreApplication.translate("MainWindow", u"BOTTOM LAYER COLOR", None))

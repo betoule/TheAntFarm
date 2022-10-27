@@ -124,7 +124,7 @@ def main():
 
     window.show()
     sys.exit(app.exec_())
-
+    #return app, window
 
 if __name__ == "__main__":
     config_os()

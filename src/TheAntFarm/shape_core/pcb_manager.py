@@ -507,8 +507,10 @@ if __name__ == '__main__':
     gerber_path = "C:\\Users\\mmatt\\Documents\\prj\\new_cnc\\cam_data\\test2\\gerbers_file\\profile.gbr"
     gerber_path = "C:\\Users\\mmatt\\Documents\\prj\\new_cnc\\cam_data\\test3\\gerbers_file\\JST_motor_breakout_board-F_Cu.gbr"
     gerber_path = "C:\\Users\\mmatt\\Desktop\\Gerber\\LedKeyring-F_Cu.gbr"
-
+    excellon_path = "/home/marc/sketchbook/balance_bois/carte_balance/carte_balance-PTH.drl"
+    
     pcb = PcbObj()
-    pcb.load_gerber(gerber_path, 'top')
-    gtop = pcb.get_gerber('top')
-    pcb.get_gerber_layer('top')
+    #pcb.load_gerber(gerber_path, 'top')
+    #gtop = pcb.get_gerber('top')
+    #pcb.get_gerber_layer('top')
+    pcb.load_excellon(excellon_path, 'drill')
