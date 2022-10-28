@@ -2532,6 +2532,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_16.addWidget(self.label_2)
 
+        self.front_side_cb = QCheckBox(self.align_tab)
+        self.front_side_cb.setObjectName(u"front_side_cb")
+        self.front_side_cb.setChecked(True)
+
+        self.verticalLayout_16.addWidget(self.front_side_cb)
+
         self.register_pos_pb = QPushButton(self.align_tab)
         self.register_pos_pb.setObjectName(u"register_pos_pb")
 
@@ -3735,6 +3741,7 @@ class Ui_MainWindow(object):
         self.tool_change_tb.setText(QCoreApplication.translate("MainWindow", u"TOOL CHANGE", None))
         self.main_tab_widget.setTabText(self.main_tab_widget.indexOf(self.control_tab), QCoreApplication.translate("MainWindow", u"CONTROL", None))
         self.label_2.setText("")
+        self.front_side_cb.setText(QCoreApplication.translate("MainWindow", u"Front side", None))
         self.register_pos_pb.setText(QCoreApplication.translate("MainWindow", u"Register position", None))
         self.main_tab_widget.setTabText(self.main_tab_widget.indexOf(self.align_tab), QCoreApplication.translate("MainWindow", u"ALIGN", None))
         self.top_layer_color_pb.setText(QCoreApplication.translate("MainWindow", u"TOP LAYER COLOR", None))

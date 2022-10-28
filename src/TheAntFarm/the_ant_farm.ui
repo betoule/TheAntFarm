@@ -5550,6 +5550,16 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="front_side_cb">
+            <property name="text">
+             <string>Front side</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="register_pos_pb">
             <property name="text">
              <string>Register position</string>

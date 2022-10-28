@@ -57,6 +57,7 @@ class ControllerWorker(QObject):
         self.camera_timer = None
 
         self.align_active = False
+        self.front_side = True
 
         self.status_to_ack = 0
         self.buffered_cmds = []
@@ -125,7 +126,7 @@ class ControllerWorker(QObject):
         if loaded_layer is not None:
             self.update_layer_s.emit(loaded_layer, layer, layer_path, exc_flag)
             if 'drill' in self.view_controller.pcb.excellons:
-                self.align_controller.update_drills(self.view_controller.pcb.get_excellon('drill'))
+                self.align_controller.update_drills(self.view_controller.pcb.get_excellon('drill'), self.front_side)
         else:
             logger.warning("Invalid file data. No geometries found in file: " + str(layer_path))
             self.update_layer_s.emit(None, layer, "", False)
@@ -497,6 +498,15 @@ class ControllerWorker(QObject):
     def update_threshold_value(self, new_threshold):
         self.align_controller.update_threshold_value(new_threshold)
 
+    @Slot(bool)
+    def flip_side(self, front_side):
+        self.front_side = front_side
+        self.align_controller.flip_side(front_side)
+
+    def register_position(self):
+        if self.align_controller.current_transform is not None:
+            print(self.align_controller.current_transform.affine_transform)
+            print(self.control_controller.mpos_a)
     # ******* SETTINGS/PREFERENCES related functions. ******** #
 
     @Slot()

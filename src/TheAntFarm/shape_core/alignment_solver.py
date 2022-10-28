@@ -99,8 +99,7 @@ def get_quad_combinations(coordinates, resolution=10, combmax=10, combmin=8, vis
     '''
     mesh_x = np.arange(coordinates['x'].min(), coordinates['x'].max(), resolution)
     mesh_y = np.arange(coordinates['y'].min(), coordinates['y'].max(), resolution)
-    i, j = np.digitize(coordinates['x'], mesh_x),  np.digitize(coordinates['y'], mesh_x)
-    
+    i, j = np.digitize(coordinates['x'], mesh_x),  np.digitize(coordinates['y'], mesh_y)
     cell_map = {}
     for _i, _j, n in zip(i, j, np.arange(len(coordinates))):
         cell = cell_map.get((_i, _j), [])
@@ -280,14 +279,24 @@ class FittedCoordinateTransformation(object):
                                           np.linalg.solve(np.dot(A, A.T), np.dot(A, Y))])
 
 class AlignmentFinder(object):
-    def __init__(self, drills, match_radius=0.5, precision=25, heuristic_resolution=8):
-        self.drills = drills
+    def __init__(self, drills, match_radius=0.5, precision=25, heuristic_resolution=8, front=True):
+        self.original_drills = drills
         self.radius = match_radius
         self.precision = precision
         self.heuristic_resolution = heuristic_resolution
+        self.set_side(front)
+        
+    def set_side(self, front):
+        if front:
+            self.drills = self.original_drills
+        else:
+            self.drills = self.original_drills.copy()
+            self.drills['x'] *= -1
+        self.prepare_hash_tables()
 
+    def prepare_hash_tables(self):
         # Prepare a hash table to find candidate transformations
-        quadrangles = get_quad_combinations(drills, 8)
+        quadrangles = get_quad_combinations(self.drills, self.heuristic_resolution)
         hashes, self.sorted_quadrangles = get_astrometric_hash(self.drills, quadrangles, precision=self.precision, mirror=True)
         hash_t = [tuple(a) for a in hashes.T]
         self.quadrangle_map = dict(zip(hash_t, np.arange(quadrangles.shape[0])))
@@ -326,6 +335,7 @@ class AlignmentFinder(object):
             return None, None
         
     def plot_transform(self, holes, transform, index):
+        import matplotlib.pyplot as plt
         tx, ty = transform(holes['x'], holes['y'])
         matched = index != -1
         plt.plot(self.drills['x'], self.drills['y'], 'o')

@@ -1,6 +1,10 @@
 
 import cv2
+import logging
 import numpy as np
+
+
+logger = logging.getLogger(__name__)
 
 
 class DoubleSideManager:
@@ -9,10 +13,13 @@ class DoubleSideManager:
 
         self.detected_holes = []
         # grab webcam
-        self.cap = cv2.VideoCapture('/dev/video3')#, cv2.CAP_DSHOW)
-        #self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-        #self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-
+        try:
+            self.cap = cv2.VideoCapture('/dev/video3')#, cv2.CAP_DSHOW)
+            #self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+            #self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        except Exception as e:
+            logger.error(str(e))
+            
     @staticmethod
     def rotate_image(image, angle):
         image_center = tuple(np.array(image.shape[1::-1]) / 2)

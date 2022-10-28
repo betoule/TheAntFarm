@@ -22,9 +22,9 @@ class AlignController(QObject):
     def update_threshold_value(self, new_threshold):
         self.threshold_value = new_threshold
 
-    def update_drills(self, excellon):
+    def update_drills(self, excellon, front_side):
         drills = np.rec.fromrecords([p.position for p in excellon.primitives], names=['x', 'y'])
-        self.alignment_finder = alignment_solver.AlignmentFinder(drills)
+        self.alignment_finder = alignment_solver.AlignmentFinder(drills, front=front_side)
         logger.info(f'Alignment finder loaded with {len(self.alignment_finder.quadrangle_map)} hash candidates.')
         
     def camera_new_frame(self):
@@ -45,6 +45,7 @@ class AlignController(QObject):
         image = qimage2ndarray.array2qimage(frame)
         return image
 
-    def register_position(self):
-        if self.current_transform is not None:
-            print(self.current_transform.affine_transform)
+    def flip_side(self, front_side):
+        if self.alignment_finder is not None:
+            self.alignment_finder.set_side(front_side)
+        
